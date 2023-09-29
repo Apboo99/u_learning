@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,7 +7,7 @@ import 'package:u_learning/common/values/color.dart';
 import 'package:u_learning/pages/main_pages/home_page/bloc/page_view_bloc.dart';
 import 'package:u_learning/pages/main_pages/home_page/bloc/page_view_event.dart';
 import 'package:u_learning/pages/main_pages/home_page/bloc/page_view_state.dart';
-import 'package:u_learning/pages/main_pages/home_page/newestCourse/newest.dart';
+import 'package:u_learning/pages/main_pages/search_page/widget/search_widgets.dart';
 import 'package:u_learning/pages/sign-in/sign_in_widgets.dart';
 import 'package:u_learning/widgets/flutter_toast.dart';
 import '../../../sign-up/bloc/sign_up_bloc.dart';
@@ -49,8 +51,6 @@ Widget buildWelcomeOfHome({required BuildContext context}) {
   final width = MediaQuery.of(context).size.width;
   final height = MediaQuery.of(context).size.height;
   final stateOfUserName = context.read<SignUpBloc>().state;
-  print(
-      "////////////////////////////////////////////////// ${stateOfUserName.userNameInitial}");
   return Container(
     margin: EdgeInsets.only(
         top: width * .03, left: width * 0.06, right: width * 0.06),
@@ -68,7 +68,7 @@ Widget buildWelcomeOfHome({required BuildContext context}) {
             fontWeight: FontWeight.bold,
             color: AppColors.primarySecondaryElementText),
         reusableText(
-            text: "Mohamed",
+            text: stateOfUserName.userNameInitial,
             // text: stateOfUserName.userNameInitial,
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -86,7 +86,10 @@ Widget searchBar(BuildContext context) {
   final height = MediaQuery.of(context).size.height;
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [buildSearchOnly(width, height, hintText: 'Search for course'), buildFilterIcon(width)],
+    children: [
+      buildSearchOnly(width, height, hintText: 'Search for course'),
+      buildFilterIcon(width)
+    ],
   );
 }
 
@@ -101,7 +104,8 @@ Widget buildFilterIcon(double width) {
   );
 }
 
-Widget buildSearchOnly(double width, double height,{required String hintText}) {
+Widget buildSearchOnly(double width, double height,
+    {required String hintText}) {
   return Container(
     margin: EdgeInsets.only(left: width * .06),
     width: width * .73,
@@ -120,16 +124,28 @@ Widget buildSearchOnly(double width, double height,{required String hintText}) {
             "assets/icons/search.png",
           ),
         ),
-        Container(
+        SizedBox(
           width: width * .6,
           height: height * .07,
-          child:  TextField(
-              decoration: InputDecoration(
-            border: InputBorder.none,
-            contentPadding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
-            hintText:hintText,
-            hintStyle: const TextStyle(color: AppColors.primaryThreeElementText),
-          )),
+          child: TextField(
+            onSubmitted: (searchData) {
+              for (int i = 0; i < showData.length; i++) {
+                if (searchData == showData[i].title) {
+                  toastInfo(message: "found");
+                  return;
+                } else {
+                  toastInfo(message: "Not found");
+                }
+              }
+            },
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+              hintText: hintText,
+              hintStyle:
+                  const TextStyle(color: AppColors.primaryThreeElementText),
+            ),
+          ),
         ),
       ],
     ),
@@ -219,7 +235,7 @@ Widget buildMenu(BuildContext context) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         buildChoiceYourCourseText(),
-        buildAllPopularNewestText(context,width, height),
+        buildAllPopularNewestText(context, width, height),
         // Container(
         //   width: width * .9,
         //   height: height * .43,
@@ -265,7 +281,7 @@ Widget buildAllPopularNewestText(
           child: reusableTex2(
             context,
             text: "Newest",
-            onTaps: (){
+            onTaps: () {
               //  Navigator.of(context).push(
               //   MaterialPageRoute(
               //     builder: (context) {
@@ -273,7 +289,7 @@ Widget buildAllPopularNewestText(
               //     },
               //   ),
               // );
-               return const SizedBox();
+              return const SizedBox();
             },
           ),
         ),
@@ -295,7 +311,7 @@ Widget buildChoiceYourCourseText() {
       ),
       reusableText(
           onTaps: () {
-            print("View all");
+            log("View all");
           },
           text: "View all",
           fontSize: 18,

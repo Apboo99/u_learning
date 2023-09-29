@@ -14,7 +14,6 @@ class HomePage extends StatelessWidget {
     // final width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
-
         backgroundColor: Colors.white,
         appBar: buildAppBarForHome(),
         body: BlocBuilder<PageViewBloc, PageViewInitial>(

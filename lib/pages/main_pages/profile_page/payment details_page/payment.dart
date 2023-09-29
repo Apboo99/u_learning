@@ -8,11 +8,13 @@ class Payment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        body: Container(
-          child: Center(child: rabidText(text: "payment"),),
-        )
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: Colors.white,
+          body: Container(
+            child: Center(child: rabidText(text: "payment"),),
+          )
+      ),
     );
   }
 }

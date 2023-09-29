@@ -11,6 +11,21 @@ class SignInController {
   final BuildContext context;
   const SignInController({required this.context});
 
+  // static signInWithPassword()async{
+  //   try{
+  //     UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+  //         email: "a@gmail.com", password: '1234567899');
+  //     User? user = userCredential.user;
+  //     if(user !=null){
+  //       String userName = user.displayName ?? "user";
+  //       return userName;
+  //     }
+  //   }
+  //   catch(e){
+  //     return e.toString();
+  //   }
+  // }
+
   Future<void> handleSignIn(String typeOfSignIn) async {
     try {
       if (typeOfSignIn == "email") {

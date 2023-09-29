@@ -9,7 +9,7 @@ class SignUpState {
   final String rePasswordInitial;
   final Color colorOfButtonInitial;
   const SignUpState({this.colorOfButtonInitial=AppColors.primaryElementBg,
-      this.userNameInitial = "",
+      this.userNameInitial = "mo7amed",
       this.emailInitial = "",
       this.passwordInitial = "",
       this.rePasswordInitial = ""});

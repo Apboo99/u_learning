@@ -15,3 +15,4 @@ class PasswordEvent extends SignInEvent {
   final String password;
   PasswordEvent(this.password);
 }
+
