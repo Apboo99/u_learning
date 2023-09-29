@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:u_learning/common/routes/names.dart';
 import 'package:u_learning/common/values/constant.dart';
-import 'package:u_learning/global.dart';
+import 'package:u_learning/common/services/global.dart';
 import 'package:u_learning/pages/main_pages/home_page/bloc/page_view_bloc.dart';
 import 'package:u_learning/pages/main_pages/home_page/home.dart';
 import 'package:u_learning/pages/main_pages/main_pages.dart';

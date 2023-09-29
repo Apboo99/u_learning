@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:u_learning/common/routes/routes.dart';
-import 'package:u_learning/global.dart';
+import 'package:u_learning/common/services/global.dart';
 
 Future<void> main() async {
   await Global.init();
@@ -15,8 +15,7 @@ class App extends StatelessWidget {
       providers: [...AppPages.allBlocProviders(context)],
       child:  const MaterialApp(
         debugShowCheckedModeBanner: false,
-        onGenerateRoute: AppPages.generatePage,
-
+        onGenerateRoute: AppPages.generatePage
       ),
     );
   }

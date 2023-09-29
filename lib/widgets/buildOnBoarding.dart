@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:u_learning/common/values/color.dart';
 import 'package:u_learning/common/values/constant.dart';
-import 'package:u_learning/global.dart';
+import 'package:u_learning/common/services/global.dart';
 
 Widget buildOnBoarding({
   required PageController pageController,
